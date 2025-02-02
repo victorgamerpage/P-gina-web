@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Cuentas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .account {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .account:last-child {
+            border-bottom: none;
+        }
+        .account button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .account button img {
+            width: 20px;
+            height: 20px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .modal-content button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gestor de Cuentas</h1>
+    <div class="container">
+        <div class="account">
+            <span>cff79079@gmail.com</span>
+            <button onclick="mostrarContrasena('contrasena1')">
+                <img src="eye-icon.png" alt="Ver contraseña">
+            </button>
+        </div>
+        <div class="account">
+            <span>rojaabel3@gmail.com</span>
+            <button onclick="mostrarContrasena('contrasena2')">
+                <img src="eye-icon.png" alt="Ver contraseña">
+            </button>
+        </div>
+    </div>
+    <div id="modal" class="modal">
+        <div class="modal-content" onclick="copiarContrasena()">
+            <p id="contrasena"></p>
+            <button onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
+    <script>
+        function mostrarContrasena(contrasenaId) {
+            const contrasenas = {
+                'contrasena1': 'Victormanuel@#123',
+                'contrasena2': 'victormanuel#@321',
+            };
+            document.getElementById('contrasena').innerText = contrasenas[contrasenaId];
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function copiarContrasena() {
+            const contrasenaTexto = document.getElementById('contrasena').innerText;
+            navigator.clipboard.writeText(contrasenaTexto).then(() => {
+                alert("Contraseña copiada al portapapeles");
+            }).catch(err => {
+                console.error("Error al copiar la contraseña: ", err);
+            });
+        }
+    </script>
+</body>
+</html>
