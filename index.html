@@ -34,9 +34,14 @@
             border-bottom: none;
         }
         .account button {
-            background-color: transparent;
+            background-color: #007BFF;
             border: none;
+            border-radius: 50%;
             cursor: pointer;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .account button img {
             width: 20px;
@@ -76,14 +81,14 @@
     <div class="container">
         <div class="account">
             <span>cff79079@gmail.com</span>
-            <button onclick="mostrarContrasena('contrasena1')">
-                <img src="eye-icon.png" alt="Ver contraseña">
+            <button onclick="mostrarContrasena('contrasena1', this)">
+                <img src="eye-closed.png" alt="Ver contraseña">
             </button>
         </div>
         <div class="account">
             <span>rojaabel3@gmail.com</span>
-            <button onclick="mostrarContrasena('contrasena2')">
-                <img src="eye-icon.png" alt="Ver contraseña">
+            <button onclick="mostrarContrasena('contrasena2', this)">
+                <img src="eye-closed.png" alt="Ver contraseña">
             </button>
         </div>
     </div>
@@ -94,17 +99,21 @@
         </div>
     </div>
     <script>
-        function mostrarContrasena(contrasenaId) {
+        function mostrarContrasena(contrasenaId, button) {
             const contrasenas = {
                 'contrasena1': 'Victormanuel@#123',
                 'contrasena2': 'victormanuel#@321',
             };
             document.getElementById('contrasena').innerText = contrasenas[contrasenaId];
             document.getElementById('modal').style.display = 'flex';
+            button.querySelector('img').src = 'eye-open.png';
         }
 
         function cerrarModal() {
             document.getElementById('modal').style.display = 'none';
+            document.querySelectorAll('.account button img').forEach(img => {
+                img.src = 'eye-closed.png';
+            });
         }
 
         function copiarContrasena() {
