@@ -42,10 +42,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-        .account button img {
-            width: 20px;
-            height: 20px;
+            color: white;
+            font-size: 12px;
+            width: 40px;
+            height: 40px;
+            text-align: center;
         }
         .modal {
             display: none;
@@ -82,13 +83,13 @@
         <div class="account">
             <span>cff79079@gmail.com</span>
             <button onclick="mostrarContrasena('contrasena1', this)">
-                <img src="eye-closed.png" alt="Ver contraseña">
+                Mostrar
             </button>
         </div>
         <div class="account">
             <span>rojaabel3@gmail.com</span>
             <button onclick="mostrarContrasena('contrasena2', this)">
-                <img src="eye-closed.png" alt="Ver contraseña">
+                Mostrar
             </button>
         </div>
     </div>
@@ -106,14 +107,10 @@
             };
             document.getElementById('contrasena').innerText = contrasenas[contrasenaId];
             document.getElementById('modal').style.display = 'flex';
-            button.querySelector('img').src = 'eye-open.png';
         }
 
         function cerrarModal() {
             document.getElementById('modal').style.display = 'none';
-            document.querySelectorAll('.account button img').forEach(img => {
-                img.src = 'eye-closed.png';
-            });
         }
 
         function copiarContrasena() {
