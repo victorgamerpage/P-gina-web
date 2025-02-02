@@ -82,25 +82,25 @@
     <div class="container">
         <div class="account">
             <span>cff79079@gmail.com</span>
-            <button onclick="mostrarContrasena('contrasena1', this)">
+            <button onclick="mostrarContrasena('contrasena1')">
                 Mostrar
             </button>
         </div>
         <div class="account">
             <span>rojaabel3@gmail.com</span>
-            <button onclick="mostrarContrasena('contrasena2', this)">
+            <button onclick="mostrarContrasena('contrasena2')">
                 Mostrar
             </button>
         </div>
     </div>
     <div id="modal" class="modal">
-        <div class="modal-content" onclick="copiarContrasena()">
+        <div class="modal-content">
             <p id="contrasena"></p>
             <button onclick="cerrarModal()">Cerrar</button>
         </div>
     </div>
     <script>
-        function mostrarContrasena(contrasenaId, button) {
+        function mostrarContrasena(contrasenaId) {
             const contrasenas = {
                 'contrasena1': 'Victormanuel@#123',
                 'contrasena2': 'victormanuel#@321',
@@ -112,15 +112,6 @@
         function cerrarModal() {
             document.getElementById('modal').style.display = 'none';
         }
-
-        function copiarContrasena() {
-            const contrasenaTexto = document.getElementById('contrasena').innerText;
-            navigator.clipboard.writeText(contrasenaTexto).then(() => {
-                alert("Contraseña copiada al portapapeles");
-            }).catch(err => {
-                console.error("Error al copiar la contraseña: ", err);
-            });
-        }
     </script>
 </body>
-</html>
+</html
