@@ -125,6 +125,58 @@
             box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
         }
 
+        /* Estilos para el sistema de brackets */
+        .bracket-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .bracket-slot {
+            border: 2px dashed #4CAF50;
+            border-radius: 15px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bracket-slot img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .slot-number {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: #4CAF50;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 50%;
+            font-size: 0.8em;
+        }
+
+        .replace-button {
+            position: absolute;
+            bottom: 5px;
+            background: rgba(76, 175, 80, 0.8);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .bracket-slot:hover .replace-button {
+            display: block;
+        }
+
         .admin-section {
             background: #ffffff;
             margin: 1.5rem 0;
@@ -133,21 +185,19 @@
             border: 1px solid #4CAF50;
         }
 
-        .upload-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
+        .password-form {
+            text-align: center;
+            margin: 3rem 0;
         }
 
-        input[type="password"], input[type="file"] {
+        input[type="password"] {
             padding: 0.8rem;
             border-radius: 10px;
             border: 1px solid #4CAF50;
             background: #f8f8f8;
             color: #000000;
             width: 300px;
-            margin: 0 auto;
+            margin: 0 auto 1rem;
         }
 
         button {
@@ -159,54 +209,12 @@
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s ease;
-            width: fit-content;
-            margin: 0 auto;
         }
 
         button:hover {
             background: #66BB6A;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
-        }
-
-        .image-preview {
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin: 0.5rem;
-            border: 2px solid #4CAF50;
-        }
-
-        .password-form {
-            text-align: center;
-            margin: 3rem 0;
-        }
-
-        .info {
-            background: #ffffff;
-            padding: 2rem;
-            border-radius: 20px;
-            margin: 2rem auto;
-            max-width: 800px;
-            border: 1px solid #4CAF50;
-        }
-
-        .info ul {
-            list-style: none;
-            padding: 1rem;
-        }
-
-        .info li {
-            padding: 0.8rem;
-            margin: 0.5rem 0;
-            background: #f8f8f8;
-            border-radius: 10px;
-            border-left: 4px solid #4CAF50;
-        }
-
-        #adminPanel {
-            display: none;
         }
 
         footer {
@@ -277,30 +285,21 @@
             <h2>Panel de Administración</h2>
             
             <div class="admin-section">
-                <h3>Modificar Cuentas</h3>
-                <div class="upload-form">
-                    <input type="file" id="cuentasUpload" multiple accept="image/*">
-                    <button onclick="uploadImages('cuentas', 5)">Actualizar Cuentas</button>
-                    <div id="cuentasPreviews"></div>
-                </div>
+                <h3>Cuentas (5 slots)</h3>
+                <div class="bracket-container" id="cuentasBracket"></div>
+                <button onclick="openFullUpdate('cuentas', 5)">Actualizar Todas</button>
             </div>
 
             <div class="admin-section">
-                <h3>Modificar Logos</h3>
-                <div class="upload-form">
-                    <input type="file" id="logosUpload" multiple accept="image/*">
-                    <button onclick="uploadImages('logos', 3)">Actualizar Logos</button>
-                    <div id="logosPreviews"></div>
-                </div>
+                <h3>Logos (3 slots)</h3>
+                <div class="bracket-container" id="logosBracket"></div>
+                <button onclick="openFullUpdate('logos', 3)">Actualizar Todas</button>
             </div>
 
             <div class="admin-section">
-                <h3>Modificar Texturas</h3>
-                <div class="upload-form">
-                    <input type="file" id="texturasUpload" multiple accept="image/*">
-                    <button onclick="uploadImages('texturas', 3)">Actualizar Texturas</button>
-                    <div id="texturasPreviews"></div>
-                </div>
+                <h3>Texturas (3 slots)</h3>
+                <div class="bracket-container" id="texturasBracket"></div>
+                <button onclick="openFullUpdate('texturas', 3)">Actualizar Todas</button>
             </div>
         </div>
     </div>
@@ -327,57 +326,91 @@
             gallery.style.display = gallery.style.display === 'none' ? 'flex' : 'none';
         }
 
-        // Admin
+        // Sistema de Administración
         function checkPassword() {
             const password = document.getElementById('password').value;
             if(password === '94UR4ADMIN12') {
                 document.getElementById('adminPanel').style.display = 'block';
+                loadBrackets();
                 alert('Acceso concedido a Brayan C/V');
             } else {
                 alert('Contraseña incorrecta');
             }
         }
 
-        // Gestión de imágenes
-        function uploadImages(section, maxImages) {
-            const input = document.getElementById(`${section}Upload`);
-            const previewContainer = document.getElementById(`${section}Previews`);
-            const files = input.files;
+        function loadBrackets() {
+            ['cuentas', 'logos', 'texturas'].forEach(section => {
+                const container = document.getElementById(`${section}Bracket`);
+                const maxImages = section === 'cuentas' ? 5 : 3;
+                const images = JSON.parse(localStorage.getItem(section)) || [];
+                
+                container.innerHTML = '';
+                for(let i = 0; i < maxImages; i++) {
+                    const slot = document.createElement('div');
+                    slot.className = 'bracket-slot';
+                    slot.innerHTML = `
+                        <div class="slot-number">${i + 1}</div>
+                        ${images[i] ? `<img src="${images[i]}" alt="Slot ${i + 1}">` : ''}
+                        <button class="replace-button" onclick="replaceSingleImage('${section}', ${i})">Reemplazar</button>
+                    `;
+                    container.appendChild(slot);
+                }
+            });
+        }
+
+        function replaceSingleImage(section, index) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
             
-            if(files.length > maxImages) {
-                alert(`Máximo ${maxImages} imágenes permitidas para ${section}`);
-                return;
-            }
-
-            previewContainer.innerHTML = '';
-            const images = [];
-
-            Array.from(files).forEach((file, index) => {
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if(!file) return;
+                
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    images.push(e.target.result);
-                    if(index === files.length - 1) {
-                        localStorage.setItem(section, JSON.stringify(images));
-                        updateGallery(section);
-                        alert('Imágenes actualizadas correctamente!');
-                    }
+                    const images = JSON.parse(localStorage.getItem(section)) || [];
+                    images[index] = e.target.result;
+                    localStorage.setItem(section, JSON.stringify(images));
+                    loadBrackets();
+                    updateGallery(section);
+                    alert('Imagen actualizada correctamente!');
                 }
                 reader.readAsDataURL(file);
+            };
+            input.click();
+        }
+
+        function openFullUpdate(section, maxImages) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.multiple = true;
+            input.accept = 'image/*';
+            
+            input.onchange = function(e) {
+                const files = e.target.files;
+                if(files.length !== maxImages) {
+                    alert(`Debe seleccionar exactamente ${maxImages} imágenes`);
+                    return;
+                }
                 
-                // Mostrar previsualización
-                const img = document.createElement('img');
-                img.classList.add('image-preview');
-                img.file = file;
-                previewContainer.appendChild(img);
-                
-                const previewReader = new FileReader();
-                previewReader.onload = (function(aImg) {
-                    return function(e) {
-                        aImg.src = e.target.result;
-                    };
-                })(img);
-                previewReader.readAsDataURL(file);
-            });
+                const images = [];
+                Array.from(files).forEach((file, index) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        images[index] = e.target.result;
+                        
+                        if(images.filter(img => img).length === maxImages) {
+                            localStorage.setItem(section, JSON.stringify(images));
+                            loadBrackets();
+                            updateGallery(section);
+                            alert('Todas las imágenes actualizadas!');
+                        }
+                    }
+                    reader.readAsDataURL(file);
+                });
+            };
+            input.click();
         }
 
         function updateGallery(section) {
@@ -388,15 +421,16 @@
             images.forEach(imgSrc => {
                 const img = document.createElement('img');
                 img.src = imgSrc;
-                img.style.border = '2px solid #4CAF50';
-                img.style.borderRadius = '15px';
                 gallery.appendChild(img);
             });
         }
 
-        // Cargar imágenes al iniciar
+        // Inicialización
         window.addEventListener('load', () => {
             ['cuentas', 'logos', 'texturas'].forEach(section => {
+                if(!localStorage.getItem(section)) {
+                    localStorage.setItem(section, JSON.stringify([]));
+                }
                 updateGallery(section);
             });
         });
