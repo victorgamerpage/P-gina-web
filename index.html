@@ -13,18 +13,18 @@
         }
 
         body {
-            background: #2a2a2a;
-            color: #ffffff;
+            background: #ffffff;
+            color: #000000;
             min-height: 100vh;
         }
 
         nav {
-            background: #1a1a1a;
+            background: #ffffff;
             padding: 1rem;
             position: fixed;
             width: 100%;
             top: 0;
-            border-bottom: 2px solid #ff4444;
+            border-bottom: 2px solid #4CAF50;
             z-index: 1000;
         }
 
@@ -36,19 +36,20 @@
         }
 
         nav a {
-            color: #ffffff;
+            color: #000000;
             text-decoration: none;
             padding: 0.8rem 1.5rem;
             border-radius: 25px;
             transition: all 0.3s ease;
-            background: #333333;
-            border: 1px solid #ff4444;
+            background: #f0f0f0;
+            border: 1px solid #4CAF50;
         }
 
         nav a:hover {
-            background: #ff4444;
+            background: #4CAF50;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(255, 68, 68, 0.3);
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+            color: white;
         }
 
         .container {
@@ -60,24 +61,25 @@
         }
 
         h1, h2, h3 {
-            color: #ff4444;
+            color: #4CAF50;
             margin-bottom: 1rem;
             text-align: center;
         }
 
         .seccion {
-            background: #333333;
+            background: #ffffff;
             margin: 1.5rem 0;
             padding: 1.5rem;
             border-radius: 20px;
             cursor: pointer;
             transition: transform 0.3s ease;
-            border: 1px solid #444444;
+            border: 1px solid #4CAF50;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .seccion:hover {
             transform: scale(1.02);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
         }
 
         .galeria {
@@ -93,13 +95,13 @@
             height: 180px;
             object-fit: cover;
             border-radius: 15px;
-            border: 2px solid #ff4444;
+            border: 2px solid #4CAF50;
             transition: transform 0.3s ease;
         }
 
         .galeria img:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
         }
 
         .boton-comprar {
@@ -107,7 +109,7 @@
             width: fit-content;
             margin: 1.5rem auto 0;
             padding: 0.8rem 2rem;
-            background: #ff4444;
+            background: #4CAF50;
             color: white;
             border: none;
             border-radius: 25px;
@@ -118,17 +120,17 @@
         }
 
         .boton-comprar:hover {
-            background: #ff6666;
+            background: #66BB6A;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
         }
 
         .admin-section {
-            background: #333333;
+            background: #ffffff;
             margin: 1.5rem 0;
             padding: 1.5rem;
             border-radius: 20px;
-            border: 1px solid #444444;
+            border: 1px solid #4CAF50;
         }
 
         .upload-form {
@@ -141,16 +143,16 @@
         input[type="password"], input[type="file"] {
             padding: 0.8rem;
             border-radius: 10px;
-            border: 1px solid #ff4444;
-            background: #444444;
-            color: white;
+            border: 1px solid #4CAF50;
+            background: #f8f8f8;
+            color: #000000;
             width: 300px;
             margin: 0 auto;
         }
 
         button {
             padding: 0.8rem 2rem;
-            background: #ff4444;
+            background: #4CAF50;
             color: white;
             border: none;
             border-radius: 25px;
@@ -162,9 +164,9 @@
         }
 
         button:hover {
-            background: #ff6666;
+            background: #66BB6A;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
         }
 
         .image-preview {
@@ -173,7 +175,7 @@
             object-fit: cover;
             border-radius: 15px;
             margin: 0.5rem;
-            border: 2px solid #ff4444;
+            border: 2px solid #4CAF50;
         }
 
         .password-form {
@@ -182,12 +184,12 @@
         }
 
         .info {
-            background: #333333;
+            background: #ffffff;
             padding: 2rem;
             border-radius: 20px;
             margin: 2rem auto;
             max-width: 800px;
-            border: 1px solid #444444;
+            border: 1px solid #4CAF50;
         }
 
         .info ul {
@@ -198,13 +200,25 @@
         .info li {
             padding: 0.8rem;
             margin: 0.5rem 0;
-            background: #444444;
+            background: #f8f8f8;
             border-radius: 10px;
-            border-left: 4px solid #ff4444;
+            border-left: 4px solid #4CAF50;
         }
 
         #adminPanel {
             display: none;
+        }
+
+        footer {
+            background: #ffffff;
+            padding: 1rem;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 2px solid #4CAF50;
+            z-index: 1000;
+            color: #000000;
         }
     </style>
 </head>
@@ -226,7 +240,7 @@
             <ul>
                 <li>Compra y venta de cuentas</li>
                 <li>Ventas de logos</li>
-                <li>Sensis</li>
+                <li>Texturas</li>
             </ul>
             <div style="text-align: center; margin-top: 1.5rem;">
                 <p>ADMIN: BRAYAN C/V<br>CTC: +53 5 0658679</p>
@@ -238,19 +252,19 @@
         <div class="seccion" onclick="toggleGallery('cuentas')">
             <h3>Cuentas</h3>
             <div id="cuentas" class="galeria"></div>
-            <a class="boton-comprar" href="https://wa.me/5351256754?text=Estoy%20interesado%20en%20comprar%20CUENTAS" target="_blank">COMPRAR</a>
+            <a class="boton-comprar" href="https://wa.me/5350658679?text=Estoy%20interesado%20en%20comprar%20CUENTAS" target="_blank">COMPRAR</a>
         </div>
 
         <div class="seccion" onclick="toggleGallery('logos')">
             <h3>Logos</h3>
             <div id="logos" class="galeria"></div>
-            <a class="boton-comprar" href="https://wa.me/5351256754?text=Estoy%20interesado%20en%20comprar%20LOGOS" target="_blank">COMPRAR</a>
+            <a class="boton-comprar" href="https://wa.me/5350658679?text=Estoy%20interesado%20en%20comprar%20LOGOS" target="_blank">COMPRAR</a>
         </div>
 
-        <div class="seccion" onclick="toggleGallery('pases')">
+        <div class="seccion" onclick="toggleGallery('texturas')">
             <h3>Texturas</h3>
-            <div id="pases" class="galeria"></div>
-            <a class="boton-comprar" href="https://wa.me/5351256754?text=Estoy%20interesado%20en%20comprar%20PASES" target="_blank">COMPRAR</a>
+            <div id="texturas" class="galeria"></div>
+            <a class="boton-comprar" href="https://wa.me/5350658679?text=Estoy%20interesado%20en%20comprar%20TEXTURAS" target="_blank">COMPRAR</a>
         </div>
     </div>
 
@@ -283,14 +297,17 @@
             <div class="admin-section">
                 <h3>Modificar Texturas</h3>
                 <div class="upload-form">
-                    <input type="file" id="pasesUpload" accept="image/*">
-                    <button onclick="uploadImages('pases', 1)">Actualizar Pases</button>
-                    <div id="pasesPreviews"></div>
+                    <input type="file" id="texturasUpload" multiple accept="image/*">
+                    <button onclick="uploadImages('texturas', 3)">Actualizar Texturas</button>
+                    <div id="texturasPreviews"></div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
+
+    <footer>
+        © 2025 VICTORCRAFTPAGES +53 56795360
+    </footer>
 
     <script>
         // Navegación
@@ -315,7 +332,7 @@
             const password = document.getElementById('password').value;
             if(password === '94UR4ADMIN12') {
                 document.getElementById('adminPanel').style.display = 'block';
-                alert('Acceso consedido a Brayan C/V');
+                alert('Acceso concedido a Brayan C/V');
             } else {
                 alert('Contraseña incorrecta');
             }
@@ -371,7 +388,7 @@
             images.forEach(imgSrc => {
                 const img = document.createElement('img');
                 img.src = imgSrc;
-                img.style.border = '2px solid #ff4444';
+                img.style.border = '2px solid #4CAF50';
                 img.style.borderRadius = '15px';
                 gallery.appendChild(img);
             });
@@ -379,7 +396,7 @@
 
         // Cargar imágenes al iniciar
         window.addEventListener('load', () => {
-            ['cuentas', 'logos', 'pases', 'objetos', 'sensis'].forEach(section => {
+            ['cuentas', 'logos', 'texturas'].forEach(section => {
                 updateGallery(section);
             });
         });
