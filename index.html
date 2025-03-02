@@ -3,127 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor de Cuentas</title>
+    <title>Black Ventas²</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
-        h1 {
-            text-align: center;
-            color: #333;
+
+        body {
+            background: #2a2a2a;
+            color: #ffffff;
+            min-height: 100vh;
         }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        .account {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
-        }
-        .account:last-child {
-            border-bottom: none;
-        }
-        .account button {
-            background-color: #007BFF;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .account button img {
-            width: 20px;
-            height: 20px;
-        }
-        .modal {
-            display: none;
+
+        nav {
+            background: #1a1a1a;
+            padding: 1rem;
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            top: 0;
+            border-bottom: 2px solid #ff4444;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
             justify-content: center;
-            align-items: center;
         }
-        .modal-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            background: #333333;
+            border: 1px solid #ff4444;
+        }
+
+        nav a:hover {
+            background: #ff4444;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 68, 68, 0.3);
+        }
+
+        .container {
+            margin-top: 90px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1, h2, h3 {
+            color: #ff4444;
+            margin-bottom: 1rem;
             text-align: center;
-            cursor: pointer;
         }
-        .modal-content button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            border: none;
-            color: #fff;
+
+        .seccion {
+            background: #333333;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border-radius: 20px;
             cursor: pointer;
-            border-radius: 5px;
+            transition: transform 0.3s ease;
+            border: 1px solid #444444;
+        }
+
+        .seccion:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .galeria {
+            display: none;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .galeria img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid #ff4444;
+            transition: transform 0.3s ease;
+        }
+
+        .galeria img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+        }
+
+        .boton-comprar {
+            display: block;
+            width: fit-content;
+            margin: 1.5rem auto 0;
+            padding: 0.8rem 2rem;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .boton-comprar:hover {
+            background: #ff6666;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+        }
+
+        .admin-section {
+            background: #333333;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid #444444;
+        }
+
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        input[type="password"], input[type="file"] {
+            padding: 0.8rem;
+            border-radius: 10px;
+            border: 1px solid #ff4444;
+            background: #444444;
+            color: white;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        button {
+            padding: 0.8rem 2rem;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        button:hover {
+            background: #ff6666;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+        }
+
+        .image-preview {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 0.5rem;
+            border: 2px solid #ff4444;
+        }
+
+        .password-form {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .info {
+            background: #333333;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 800px;
+            border: 1px solid #444444;
+        }
+
+        .info ul {
+            list-style: none;
+            padding: 1rem;
+        }
+
+        .info li {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: #444444;
+            border-radius: 10px;
+            border-left: 4px solid #ff4444;
+        }
+
+        #adminPanel {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <h1>Gestor de Cuentas</h1>
-    <div class="container">
-        <div class="account">
-            <span>cff79079@gmail.com</span>
-            <button onclick="mostrarContrasena('contrasena1', this)">
-                <img src="eye-closed.png" alt="Ver contraseña">
-            </button>
-        </div>
-        <div class="account">
-            <span>rojaabel3@gmail.com</span>
-            <button onclick="mostrarContrasena('contrasena2', this)">
-                <img src="eye-closed.png" alt="Ver contraseña">
-            </button>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#ventas">Ventas</a></li>
+            <li><a href="#admin">Admin</a></li>
+        </ul>
+    </nav>
+
+    <div id="home" class="container">
+        <h1>BLACK VXNTAS</h1>
+        <p style="text-align: center; font-size: 1.1em;">Hola sobreviviente, te traemos rapidez, seguridad y confianza</p>
+        
+        <div class="info">
+            <h2>Empresa dedicada a:</h2>
+            <ul>
+                <li>Compra y venta de cuentas</li>
+                <li>Ventas de logos</li>
+                <li>Venta de pases</li>
+                <li>Ventas de objetos de la tienda</li>
+                <li>Sensis</li>
+            </ul>
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <p>CEO: P KACHU Y<br>CTC: 51256754</p>
+            </div>
         </div>
     </div>
-    <div id="modal" class="modal">
-        <div class="modal-content" onclick="copiarContrasena()">
-            <p id="contrasena"></p>
-            <button onclick="cerrarModal()">Cerrar</button>
+
+    <div id="ventas" class="container" style="display:none">
+        <div class="seccion" onclick="toggleGallery('cuentas')">
+            <h3>Cuentas (5)</h3>
+            <div id="cuentas" class="galeria"></div>
+            <a class="boton-comprar" href="https://wa.me/5351256754?text=Estoy%20interesado%20en%20comprar%20CUENTAS" target="_blank">COMPRAR</a>
+        </div>
+
+        <div class="seccion" onclick="toggleGallery('logos')">
+            <h3>Logos (3)</h3>
+            <div id="logos" class="galeria"></div>
+            <a class="boton-comprar" href="https://wa.me/5351256754?text=Estoy%20interesado%20en%20comprar%20LOGOS" target="_blank">COMPRAR</a>
+        </div>
+
+        <div class="seccion" onclick="toggleGallery('pases')">
+            <h3>Pases (1)</h3>
+            <div id="pases" class="galeria"></div>
+            <a class="boton-comprar" href="https://wa.me/5351256754?text=Estoy%20interesado%20en%20comprar%20PASES" target="_blank">COMPRAR</a>
+        </div>
+
+        <div class="seccion" onclick="toggleGallery('objetos')">
+            <h3>Objetos de tienda (1)</h3>
+            <div id="objetos" class="galeria"></div>
+            <a class="boton-comprar" href="https://wa.me/5351256754?text=Estoy%20interesado%20en%20comprar%20OBJETOS%20DE%20TIENDA" target="_blank">COMPRAR</a>
+        </div>
+
+        <div class="seccion" onclick="toggleGallery('sensis')">
+            <h3>Sensis (1)</h3>
+            <div id="sensis" class="galeria"></div>
+            <a class="boton-comprar" href="https://wa.me/5351256754?text=Estoy%20interesado%20en%20comprar%20SENSIS" target="_blank">COMPRAR</a>
         </div>
     </div>
+
+    <div id="admin" class="container" style="display:none">
+        <div class="password-form">
+            <input type="password" id="password" placeholder="Ingresa la contraseña">
+            <button onclick="checkPassword()">Acceder</button>
+        </div>
+        <div id="adminPanel">
+            <h2>Panel de Administración</h2>
+            
+            <div class="admin-section">
+                <h3>Modificar Cuentas (5 imágenes)</h3>
+                <div class="upload-form">
+                    <input type="file" id="cuentasUpload" multiple accept="image/*">
+                    <button onclick="uploadImages('cuentas', 5)">Actualizar Cuentas</button>
+                    <div id="cuentasPreviews"></div>
+                </div>
+            </div>
+
+            <div class="admin-section">
+                <h3>Modificar Logos (3 imágenes)</h3>
+                <div class="upload-form">
+                    <input type="file" id="logosUpload" multiple accept="image/*">
+                    <button onclick="uploadImages('logos', 3)">Actualizar Logos</button>
+                    <div id="logosPreviews"></div>
+                </div>
+            </div>
+
+            <div class="admin-section">
+                <h3>Modificar Pases (1 imagen)</h3>
+                <div class="upload-form">
+                    <input type="file" id="pasesUpload" accept="image/*">
+                    <button onclick="uploadImages('pases', 1)">Actualizar Pases</button>
+                    <div id="pasesPreviews"></div>
+                </div>
+            </div>
+
+            <div class="admin-section">
+                <h3>Modificar Objetos (1 imagen)</h3>
+                <div class="upload-form">
+                    <input type="file" id="objetosUpload" accept="image/*">
+                    <button onclick="uploadImages('objetos', 1)">Actualizar Objetos</button>
+                    <div id="objetosPreviews"></div>
+                </div>
+            </div>
+
+            <div class="admin-section">
+                <h3>Modificar Sensis (1 imagen)</h3>
+                <div class="upload-form">
+                    <input type="file" id="sensisUpload" accept="image/*">
+                    <button onclick="uploadImages('sensis', 1)">Actualizar Sensis</button>
+                    <div id="sensisPreviews"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function mostrarContrasena(contrasenaId, button) {
-            const contrasenas = {
-                'contrasena1': 'Victormanuel@#123',
-                'contrasena2': 'victormanuel#@321',
-            };
-            document.getElementById('contrasena').innerText = contrasenas[contrasenaId];
-            document.getElementById('modal').style.display = 'flex';
-            button.querySelector('img').src = 'eye-open.png';
+        // Navegación
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.container').forEach(div => {
+                    div.style.display = 'none';
+                });
+                document.querySelector(link.getAttribute('href')).style.display = 'block';
+            });
+        });
+
+        // Galerías
+        function toggleGallery(id) {
+            const gallery = document.getElementById(id);
+            gallery.style.display = gallery.style.display === 'none' ? 'flex' : 'none';
         }
 
-        function cerrarModal() {
-            document.getElementById('modal').style.display = 'none';
-            document.querySelectorAll('.account button img').forEach(img => {
-                img.src = 'eye-closed.png';
+        // Admin
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            if(password === '94UR4ADMIN12') {
+                document.getElementById('adminPanel').style.display = 'block';
+                alert('Acceso concedido');
+            } else {
+                alert('Contraseña incorrecta');
+            }
+        }
+
+        // Gestión de imágenes
+        function uploadImages(section, maxImages) {
+            const input = document.getElementById(`${section}Upload`);
+            const previewContainer = document.getElementById(`${section}Previews`);
+            const files = input.files;
+            
+            if(files.length > maxImages) {
+                alert(`Máximo ${maxImages} imágenes permitidas para ${section}`);
+                return;
+            }
+
+            previewContainer.innerHTML = '';
+            const images = [];
+
+            Array.from(files).forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    images.push(e.target.result);
+                    if(index === files.length - 1) {
+                        localStorage.setItem(section, JSON.stringify(images));
+                        updateGallery(section);
+                        alert('Imágenes actualizadas correctamente!');
+                    }
+                }
+                reader.readAsDataURL(file);
+                
+                // Mostrar previsualización
+                const img = document.createElement('img');
+                img.classList.add('image-preview');
+                img.file = file;
+                previewContainer.appendChild(img);
+                
+                const previewReader = new FileReader();
+                previewReader.onload = (function(aImg) {
+                    return function(e) {
+                        aImg.src = e.target.result;
+                    };
+                })(img);
+                previewReader.readAsDataURL(file);
             });
         }
 
-        function copiarContrasena() {
-            const contrasenaTexto = document.getElementById('contrasena').innerText;
-            navigator.clipboard.writeText(contrasenaTexto).then(() => {
-                alert("Contraseña copiada al portapapeles");
-            }).catch(err => {
-                console.error("Error al copiar la contraseña: ", err);
+        function updateGallery(section) {
+            const gallery = document.getElementById(section);
+            const images = JSON.parse(localStorage.getItem(section)) || [];
+            
+            gallery.innerHTML = '';
+            images.forEach(imgSrc => {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.style.border = '2px solid #ff4444';
+                img.style.borderRadius = '15px';
+                gallery.appendChild(img);
             });
         }
+
+        // Cargar imágenes al iniciar
+        window.addEventListener('load', () => {
+            ['cuentas', 'logos', 'pases', 'objetos', 'sensis'].forEach(section => {
+                updateGallery(section);
+            });
+        });
     </script>
 </body>
-</html>
+    </html>
