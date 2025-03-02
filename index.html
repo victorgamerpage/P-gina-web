@@ -218,7 +218,7 @@
     </nav>
 
     <div id="home" class="container">
-        <h1>BLACK VXNTAS</h1>
+        <h1>BRAYAN C/V</h1>
         <p style="text-align: center; font-size: 1.1em;">Hola sobreviviente, te traemos rapidez, seguridad y confianza</p>
         
         <div class="info">
@@ -226,45 +226,31 @@
             <ul>
                 <li>Compra y venta de cuentas</li>
                 <li>Ventas de logos</li>
-                <li>Venta de pases</li>
-                <li>Ventas de objetos de la tienda</li>
                 <li>Sensis</li>
             </ul>
             <div style="text-align: center; margin-top: 1.5rem;">
-                <p>CEO: P KACHU Y<br>CTC: 51256754</p>
+                <p>ADMIN: BRAYAN C/V<br>CTC: +53 5 0658679</p>
             </div>
         </div>
     </div>
 
     <div id="ventas" class="container" style="display:none">
         <div class="seccion" onclick="toggleGallery('cuentas')">
-            <h3>Cuentas (5)</h3>
+            <h3>Cuentas</h3>
             <div id="cuentas" class="galeria"></div>
             <a class="boton-comprar" href="https://wa.me/5351256754?text=Estoy%20interesado%20en%20comprar%20CUENTAS" target="_blank">COMPRAR</a>
         </div>
 
         <div class="seccion" onclick="toggleGallery('logos')">
-            <h3>Logos (3)</h3>
+            <h3>Logos</h3>
             <div id="logos" class="galeria"></div>
             <a class="boton-comprar" href="https://wa.me/5351256754?text=Estoy%20interesado%20en%20comprar%20LOGOS" target="_blank">COMPRAR</a>
         </div>
 
         <div class="seccion" onclick="toggleGallery('pases')">
-            <h3>Pases (1)</h3>
+            <h3>Texturas</h3>
             <div id="pases" class="galeria"></div>
             <a class="boton-comprar" href="https://wa.me/5351256754?text=Estoy%20interesado%20en%20comprar%20PASES" target="_blank">COMPRAR</a>
-        </div>
-
-        <div class="seccion" onclick="toggleGallery('objetos')">
-            <h3>Objetos de tienda (1)</h3>
-            <div id="objetos" class="galeria"></div>
-            <a class="boton-comprar" href="https://wa.me/5351256754?text=Estoy%20interesado%20en%20comprar%20OBJETOS%20DE%20TIENDA" target="_blank">COMPRAR</a>
-        </div>
-
-        <div class="seccion" onclick="toggleGallery('sensis')">
-            <h3>Sensis (1)</h3>
-            <div id="sensis" class="galeria"></div>
-            <a class="boton-comprar" href="https://wa.me/5351256754?text=Estoy%20interesado%20en%20comprar%20SENSIS" target="_blank">COMPRAR</a>
         </div>
     </div>
 
@@ -277,7 +263,7 @@
             <h2>Panel de Administración</h2>
             
             <div class="admin-section">
-                <h3>Modificar Cuentas (5 imágenes)</h3>
+                <h3>Modificar Cuentas</h3>
                 <div class="upload-form">
                     <input type="file" id="cuentasUpload" multiple accept="image/*">
                     <button onclick="uploadImages('cuentas', 5)">Actualizar Cuentas</button>
@@ -286,7 +272,7 @@
             </div>
 
             <div class="admin-section">
-                <h3>Modificar Logos (3 imágenes)</h3>
+                <h3>Modificar Logos</h3>
                 <div class="upload-form">
                     <input type="file" id="logosUpload" multiple accept="image/*">
                     <button onclick="uploadImages('logos', 3)">Actualizar Logos</button>
@@ -295,30 +281,13 @@
             </div>
 
             <div class="admin-section">
-                <h3>Modificar Pases (1 imagen)</h3>
+                <h3>Modificar Texturas</h3>
                 <div class="upload-form">
                     <input type="file" id="pasesUpload" accept="image/*">
                     <button onclick="uploadImages('pases', 1)">Actualizar Pases</button>
                     <div id="pasesPreviews"></div>
                 </div>
             </div>
-
-            <div class="admin-section">
-                <h3>Modificar Objetos (1 imagen)</h3>
-                <div class="upload-form">
-                    <input type="file" id="objetosUpload" accept="image/*">
-                    <button onclick="uploadImages('objetos', 1)">Actualizar Objetos</button>
-                    <div id="objetosPreviews"></div>
-                </div>
-            </div>
-
-            <div class="admin-section">
-                <h3>Modificar Sensis (1 imagen)</h3>
-                <div class="upload-form">
-                    <input type="file" id="sensisUpload" accept="image/*">
-                    <button onclick="uploadImages('sensis', 1)">Actualizar Sensis</button>
-                    <div id="sensisPreviews"></div>
-                </div>
             </div>
         </div>
     </div>
@@ -346,7 +315,7 @@
             const password = document.getElementById('password').value;
             if(password === '94UR4ADMIN12') {
                 document.getElementById('adminPanel').style.display = 'block';
-                alert('Acceso concedido');
+                alert('Acceso consedido a Brayan C/V');
             } else {
                 alert('Contraseña incorrecta');
             }
